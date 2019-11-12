@@ -5,7 +5,7 @@ import java.sql.SQLOutput;
 public class ThreadedMinimumPairwiseDistance implements MinimumPairwiseDistance {
 
     int[] values;
-    long globalResult;
+    long globalResult = Integer.MAX_VALUE;
     int N;
 
     @Override
@@ -35,11 +35,7 @@ public class ThreadedMinimumPairwiseDistance implements MinimumPairwiseDistance 
         public void run() {
             long localResult = Integer.MAX_VALUE;
             for (int i = 0; i < N/2; i++) {
-                System.out.println(i);
-                System.out.println(values[i]);
                 for (int j = 0; j < i; j++) {
-                    System.out.println(j);
-                    System.out.println(values[j]);
                     long diff = Math.abs(values[i] - values[j]);
                     if (diff < localResult) {
                         localResult = diff;
@@ -56,8 +52,8 @@ public class ThreadedMinimumPairwiseDistance implements MinimumPairwiseDistance 
         public void run() {
             long localResult = Integer.MAX_VALUE;
             for (int j = 0; j < N/2; j++) {
-                for (int i = N/2; i <= j + N/2; j++) {
-                    long diff = Math.abs(values[i] - values[j]);
+                for (int i = N/2; i <= j + N/2; i++) {
+                    long diff = Math.abs(values[j] - values[i]);
                     if (diff < localResult) {
                         localResult = diff;
                     }
@@ -73,7 +69,7 @@ public class ThreadedMinimumPairwiseDistance implements MinimumPairwiseDistance 
         public void run() {
             long localResult = Integer.MAX_VALUE;
             for (int i = N/2; i < N; ++i) {
-                for (int j = N/2; j + N/2 < i; ++j) {
+                for (int j = 0; j + N/2 < i; ++j) {
                     long diff = Math.abs(values[i] - values[j]);
                     if (diff < localResult) {
                         localResult = diff;

@@ -13,7 +13,7 @@ public class ThreadedMain {
         int[] values = new int[numValues];
         for (int i = 0; i < numValues; ++i) {
             values[i] = random.nextInt();
-            System.out.println(values[i]);
+            System.out.println("Values are:" + values[i]);
 
         }
 
