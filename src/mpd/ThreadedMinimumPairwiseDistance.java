@@ -31,7 +31,7 @@ public class ThreadedMinimumPairwiseDistance implements MinimumPairwiseDistance 
         return globalResult;
     }
 
-    private class LowerLeft implements Runnable {
+    private class LowerLeft implements Runnable { //LowerLeft in the example
         public void run() {
             long localResult = Integer.MAX_VALUE;
             for (int i = 0; i < N/2; i++) {
@@ -48,7 +48,7 @@ public class ThreadedMinimumPairwiseDistance implements MinimumPairwiseDistance 
         }
     }
 
-    private class MidLeft implements Runnable {
+    private class MidLeft implements Runnable { //Center in the example
         public void run() {
             long localResult = Integer.MAX_VALUE;
             for (int j = 0; j < N/2; j++) {
@@ -65,7 +65,7 @@ public class ThreadedMinimumPairwiseDistance implements MinimumPairwiseDistance 
         }
     }
 
-    private class MidRight implements Runnable {
+    private class MidRight implements Runnable { //BottomRight in the example
         public void run() {
             long localResult = Integer.MAX_VALUE;
             for (int i = N/2; i < N; ++i) {
@@ -82,7 +82,7 @@ public class ThreadedMinimumPairwiseDistance implements MinimumPairwiseDistance 
         }
     }
 
-    private class TopRight implements Runnable {
+    private class TopRight implements Runnable { //TopRight in the example
         public void run() {
             long localResult = Integer.MAX_VALUE;
             for (int i = N/2; i < N; ++i) {
